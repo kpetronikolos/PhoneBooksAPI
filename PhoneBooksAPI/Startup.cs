@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using PhoneBooksAPI.Models;
+using PhoneBooksAPI.Services;
 
 namespace PhoneBooksAPI
 {
@@ -28,6 +29,8 @@ namespace PhoneBooksAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<PhoneBooksAPIContext>(x => x.UseInMemoryDatabase());
+
+            services.AddTransient<IPhoneRepository, PhoneRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
